@@ -16,7 +16,6 @@ export interface SidebarContextInterface {
 export const SidebarContext = createContext({} as SidebarContextInterface)
 
 export function useSidebarContext() {
-  console.log("called")
   return useContext(SidebarContext)
 }
 

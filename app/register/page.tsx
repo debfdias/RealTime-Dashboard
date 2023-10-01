@@ -23,7 +23,6 @@ export default function Register() {
   })
 
   async function handleRegister(data: FormData) {
-    console.log("called")
     setLoading(true)
 
     const userData = JSON.stringify({

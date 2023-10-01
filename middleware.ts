@@ -4,10 +4,6 @@ import { NextRequest, NextResponse } from "next/server"
 export default async function middleware(req: NextRequest, res: NextResponse) {
   const path = req.nextUrl.pathname
 
-  if (path === "/") {
-    return NextResponse.next()
-  }
-
   const session = await getToken({
     req,
     secret: process.env.NEXTAUTH_SECRET,
@@ -15,7 +11,7 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
 
   if (!session && path === "/dashboard") {
     return NextResponse.redirect(new URL("/", req.url))
-  } else if (session && path === "/register") {
+  } else if (session && (path === "/register" || path === "/")) {
     return NextResponse.redirect(new URL("/dashboard", req.url))
   }
 

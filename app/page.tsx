@@ -8,6 +8,7 @@ import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { BeatLoader } from "react-spinners"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { z } from "zod"
@@ -98,7 +99,13 @@ export default function Home() {
                   disabled={loading}
                   className="w-full flex justify-center bg-blue-500 hover:bg-blue-600 text-gray-100 p-3 rounded-lg tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-100 mt-8 disabled:bg-gray-400"
                 >
-                  Sign in
+                  {loading ? (
+                    <div className="">
+                      <BeatLoader color="#5873a8" size={12} />
+                    </div>
+                  ) : (
+                    <>Sign in</>
+                  )}
                 </button>
               </form>
             </div>

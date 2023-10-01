@@ -24,12 +24,12 @@ export default function Sidebar() {
       />
 
       <div
-        className={`sm:flex sm:flex-col min-h-full fixed bg-gray-900 hidden transition-all  duration-350 ease-linear ${
+        className={`sm:flex sm:flex-col min-h-full fixed dark:bg-gray-900 bg-gray-200 hidden transition-all duration-350 ease-linear ${
           openSidebar ? "translate-x-0" : "-translate-x-96"
         }`}
       >
         <button
-          className="absolute top-4 left-16 block md:hidden mb-10 text-gray-500 hover:text-gray-400"
+          className="absolute top-4 left-16 block md:hidden mb-10 text-gray-400 dark:text-gray-500 dark:hover:text-gray-400 hover:text-gray-700"
           onClick={() => setOpenSidebar(false)}
         >
           <MdClose size={20} />
@@ -40,7 +40,7 @@ export default function Sidebar() {
             return (
               <div key={route.path}>
                 <Link href={route.path}>
-                  <div className="relative mb-3 flex hover:cursor-pointer hover:bg-gray-700/20 group">
+                  <div className="relative mb-3 flex hover:cursor-pointer hover:bg-gray-300/70 dark:hover:bg-gray-700/20 group">
                     <div
                       className="my-2 flex cursor-pointer px-8 items-center justify-center "
                       key={index}
@@ -52,7 +52,7 @@ export default function Sidebar() {
                         className={`ml-4 flex  ${
                           checkActiveRoute(route.path) === true
                             ? "font-bold text-gray-700 dark:text-white"
-                            : "font-light text-gray-200 group-hover:text-blue-400"
+                            : "font-light text-gray-700 dark:text-gray-200 group-hover:text-blue-400"
                         }`}
                       >
                         {route.name}
