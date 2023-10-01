@@ -1,11 +1,15 @@
 "use client"
 
+import InputText from "@/components/Input"
 import { signUpSchema } from "@/interfaces/signUpSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import axios from "axios"
+import Link from "next/link"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { BeatLoader } from "react-spinners"
 import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import { z } from "zod"
 
 type FormData = z.infer<typeof signUpSchema>
@@ -70,69 +74,64 @@ export default function Register() {
         theme="colored"
       />
 
-      <div className="bg-no-repeat bg-cover bg-center relative">
-        <div className="absolute bg-gradient-to-b from-green-500 to-green-400 opacity-75 inset-0 z-0"></div>
-        <div className="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
-          <div className="flex-col flex  self-center p-10 sm:max-w-5xl xl:max-w-2xl  z-10">
-            <div className="self-start hidden lg:flex flex-col  text-white">
-              <h1 className="mb-3 font-bold text-5xl">
-                Hi ? Welcome Back Aji{" "}
-              </h1>
-              <p className="pr-3">
-                Lorem ipsums is placeholder text commonly used in the graphic,
-                print, and publishing industries for dpreviewing layouts and
-                visual mockups
-              </p>
-            </div>
-          </div>
-          <div className="flex justify-center self-center  z-10">
-            <div className="p-12 bg-white mx-auto rounded-2xl w-100 ">
+      <div className="bg-gradient-to-b from-gray-900 to-blue-950 ">
+        <div className="min-h-screen flex justify-center">
+          <div className="flex justify-center self-center z-10">
+            <div className="p-8 bg-white rounded-lg w-[450px]">
               <div className="mb-4">
                 <h3 className="font-semibold text-2xl text-gray-800">
-                  Sign In{" "}
+                  Sign Up{" "}
                 </h3>
-                <p className="text-gray-500">Please sign in to your account.</p>
+                <p className="text-gray-500 mt-2">Create a new account.</p>
               </div>
-              <div className="space-y-5">
-                <div className="space-y-2">
-                  <div>
-                    <form onSubmit={handleSubmit(handleRegister)}>
-                      <label className="text-sm font-medium text-gray-700 tracking-wide">
-                        Name
-                      </label>
-                      <input
-                        className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400 text-gray-700"
-                        {...register("name")}
-                      />
+              <form
+                onSubmit={handleSubmit(handleRegister)}
+                className="flex flex-col"
+              >
+                <InputText
+                  label="Name"
+                  name="name"
+                  type="text"
+                  error={errors?.name?.message}
+                  register={register}
+                />
 
-                      <label className="text-sm font-medium text-gray-700 tracking-wide">
-                        Email
-                      </label>
-                      <input
-                        className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400 text-gray-700"
-                        {...register("email", { required: true })}
-                      />
-                      {/* errors will return when field validation fails  */}
-                      {errors.email && <span>This field is required</span>}
+                <InputText
+                  label="Email"
+                  name="email"
+                  type="text"
+                  error={errors?.email?.message}
+                  register={register}
+                />
 
-                      <label className="mb-5 text-sm font-medium text-gray-700 tracking-wide">
-                        Password
-                      </label>
-                      <input
-                        className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400 text-gray-700"
-                        {...register("password", { required: true })}
-                      />
-                      {/* errors will return when field validation fails  */}
-                      {errors.password && <span>This field is required</span>}
+                <InputText
+                  label="Password"
+                  name="password"
+                  type="password"
+                  error={errors?.password?.message}
+                  register={register}
+                />
 
-                      <button className="bg-red-500 p-5" type="submit">
-                        {" "}
-                        vai{" "}
-                      </button>
-                    </form>
-                  </div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full flex justify-center bg-blue-500 hover:bg-blue-600 text-gray-100 p-3 rounded-lg tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-100 mt-8 disabled:bg-gray-400"
+                >
+                  {loading ? (
+                    <div className="">
+                      <BeatLoader color="#5873a8" size={12} />
+                    </div>
+                  ) : (
+                    <>Sign in</>
+                  )}
+                </button>
+                <div className="flex text-gray-400 mt-4 items-center self-center">
+                  DAlready have an account?{" "}
+                  <strong className="hover:underline">
+                    <Link href={"/"}> Sign in!</Link>
+                  </strong>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

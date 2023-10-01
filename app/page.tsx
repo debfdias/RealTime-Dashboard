@@ -5,6 +5,7 @@ import { signInSchema } from "@/interfaces/signInSchema"
 import { signUpSchema } from "@/interfaces/signUpSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signIn } from "next-auth/react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
@@ -18,6 +19,7 @@ type FormData = z.infer<typeof signUpSchema>
 export default function Home() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [isRegister, setIsRegister] = useState(false)
 
   const {
     handleSubmit,
@@ -107,6 +109,13 @@ export default function Home() {
                     <>Sign in</>
                   )}
                 </button>
+
+                <div className="flex text-gray-400 mt-4 items-center self-center">
+                  Don&apos;t have an account?{" "}
+                  <strong className="hover:underline">
+                    <Link href={"/register"}> Create one!</Link>
+                  </strong>
+                </div>
               </form>
             </div>
           </div>
