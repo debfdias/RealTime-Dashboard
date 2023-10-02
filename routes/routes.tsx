@@ -37,6 +37,7 @@ const appRoutes = [
     layout: "/layout",
     path: "layout",
     icon: <LuLayout className="h-6 w-6" />,
+    isDropdown: true,
   },
   {
     name: "Settings",

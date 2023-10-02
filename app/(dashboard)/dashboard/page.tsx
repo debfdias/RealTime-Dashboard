@@ -1,13 +1,10 @@
 "use client"
 
-import Header from "@/components/Header"
-import Sidebar from "@/components/Sidebar"
 import { staticData } from "@/constants/data"
-import SidebarProvider from "@/contexts/SidebarProvider"
 import axios from "axios"
 import { useEffect, useState } from "react"
 
-export default function Dashboard() {
+export default function Dashboardd() {
   const [data, setData] = useState<any>([])
   const [loading, setLoading] = useState(true)
 
@@ -53,25 +50,12 @@ export default function Dashboard() {
 
   return (
     <div>
-      <SidebarProvider>
-        <section className="">
-          <Header />
-          <Sidebar />
-          <div className="w-full dark:bg-gray-800 bg-gray-300 text-gray-700 dark:text-gray-200">
-            <main className="h-full transition-all md:ml-[300px] md:px-8 px-16">
-              <div className="h-full">
-                <div className="min-h-screen py-8">
-                  <div>
-                    {data.map((item: any) => {
-                      return <div key={item.id}>{item.user}</div>
-                    })}
-                  </div>
-                </div>
-              </div>
-            </main>
-          </div>
-        </section>
-      </SidebarProvider>
+      <div>the real dashh</div>
+      <div>
+        {data.map((item: any) => {
+          return <div key={item.id}>{item.user}</div>
+        })}
+      </div>
     </div>
   )
 }
