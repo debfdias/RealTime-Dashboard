@@ -2,12 +2,21 @@
 
 import { staticData } from "@/constants/data"
 import axios from "axios"
+import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 
-export default function Dashboardd() {
-  const [data, setData] = useState<any>([])
-  const [loading, setLoading] = useState(true)
+const LineChart = dynamic(() => import("@/components/Charts/LineChart"), {
+  ssr: false,
+})
 
+const BarChart = dynamic(() => import("@/components/Charts/BarChart"), {
+  ssr: false,
+})
+
+export default function Dashboardd() {
+  const [lineChartData, setLineCharData] = useState<any>([])
+  const [barChartData, setBarCharData] = useState<any>([])
+  const [loading, setLoading] = useState(true)
   const SECONDS_MS = 5000 //5 seconds
 
   const token =
@@ -24,7 +33,7 @@ export default function Dashboardd() {
     await axios
       .get("https://dashboard-api-dusky.vercel.app/api/get", { headers })
       .then((response) => {
-        setData(response.data)
+        console.log(response.data)
       })
       .catch((err) => {
         console.log(err)
@@ -35,13 +44,13 @@ export default function Dashboardd() {
   }
 
   async function loadStatic() {
-    setData(staticData.data.dashboardData.tables.recentTransactions)
+    setLineCharData(staticData.data.dashboardData.charts.salesOverTime.data)
+    setBarCharData(staticData.data.dashboardData.charts.userEngagement.data)
   }
 
   useEffect(() => {
     loadStatic()
     const gap = setInterval(() => {
-      console.log("loading")
       loadStatic()
     }, SECONDS_MS)
 
@@ -49,12 +58,14 @@ export default function Dashboardd() {
   }, [])
 
   return (
-    <div>
-      <div>the real dashh</div>
-      <div>
-        {data.map((item: any) => {
-          return <div key={item.id}>{item.user}</div>
-        })}
+    <div className="w-full">
+      <div className="flex gap-8">
+        <div className="w-1/2">
+          <LineChart name="Sales in October" data={lineChartData} />
+        </div>
+        <div className="w-2/5">
+          <BarChart name="User engagement" data={barChartData} />
+        </div>
       </div>
     </div>
   )

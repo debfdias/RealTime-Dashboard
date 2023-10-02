@@ -30,7 +30,7 @@ export default function Sidebar() {
       />
 
       <div
-        className={`sm:flex sm:flex-col min-h-full fixed dark:bg-gray-900 bg-gray-200 hidden transition-all duration-350 ease-linear ${
+        className={`sm:flex sm:flex-col min-h-full fixed dark:bg-gray-900 bg-gray-200 hidden transition-all duration-350 ease-linear z-10 ${
           openSidebar ? "translate-x-0" : "-translate-x-96"
         }`}
       >
