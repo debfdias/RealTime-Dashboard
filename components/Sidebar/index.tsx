@@ -13,6 +13,7 @@ import { TbLayoutAlignBottom } from "react-icons/tb"
 export default function Sidebar() {
   const { openSidebar, setOpenSidebar } = useSidebarContext()
   const [openDropdown, setOpenDropdown] = useState(false)
+  const [layout, setLayout] = useState<string>("")
 
   const pathname = usePathname()
 
@@ -90,12 +91,18 @@ export default function Sidebar() {
 
                   {openDropdown && route.path === "layout" && (
                     <div className="font-light cursor-pointer items-center justify-center text-gray-600 dark:text-gray-300">
-                      <div className="flex items-center px-16 py-2 hover:bg-gray-300/70 dark:hover:bg-gray-700/20 hover:text-blue-500">
+                      <div
+                        onClick={() => setLayout("stacked")}
+                        className="flex items-center px-16 py-2 hover:bg-gray-300/70 dark:hover:bg-gray-700/20 hover:text-blue-500"
+                      >
                         <PiStack size={20} />
                         <div className="ml-4">Stacked</div>
                       </div>
 
-                      <div className="flex items-center px-16 mb-4 py-2 hover:bg-gray-300/70 dark:hover:bg-gray-700/20 hover:text-blue-500">
+                      <div
+                        onClick={() => setLayout("minimalist")}
+                        className="flex items-center px-16 mb-4 py-2 hover:bg-gray-300/70 dark:hover:bg-gray-700/20 hover:text-blue-500"
+                      >
                         <TbLayoutAlignBottom size={20} />
                         <div className="ml-4">Minimalist</div>
                       </div>
