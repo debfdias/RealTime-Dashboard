@@ -7,8 +7,7 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { FiChevronDown, FiChevronUp } from "react-icons/fi"
 import { MdClose } from "react-icons/md"
-import { PiStack } from "react-icons/pi"
-import { TbLayoutAlignBottom } from "react-icons/tb"
+import { PiSquaresFourLight, PiStack } from "react-icons/pi"
 
 export default function Sidebar() {
   const { openSidebar, setOpenSidebar } = useSidebarContext()
@@ -30,12 +29,12 @@ export default function Sidebar() {
       />
 
       <div
-        className={`sm:flex sm:flex-col min-h-full fixed dark:bg-gray-900 bg-gray-200 hidden transition-all duration-350 ease-linear z-10 ${
+        className={`pt-16 sm:flex sm:flex-col min-h-full fixed dark:bg-gray-900 bg-gray-200 hidden transition-all duration-350 ease-linear z-10 ${
           openSidebar ? "translate-x-0" : "-translate-x-96"
         }`}
       >
         <button
-          className="absolute top-4 left-16 block md:hidden mb-10 text-gray-400 dark:text-gray-500 dark:hover:text-gray-400 hover:text-gray-700"
+          className="absolute top-20 left-16 block md:hidden mb-10 text-gray-400 dark:text-gray-500 dark:hover:text-gray-400 hover:text-gray-700"
           onClick={() => setOpenSidebar(false)}
         >
           <MdClose size={20} />
@@ -103,8 +102,8 @@ export default function Sidebar() {
                         onClick={() => setLayout("minimalist")}
                         className="flex items-center px-16 mb-4 py-2 hover:bg-gray-300/70 dark:hover:bg-gray-700/20 hover:text-blue-500"
                       >
-                        <TbLayoutAlignBottom size={20} />
-                        <div className="ml-4">Minimalist</div>
+                        <PiSquaresFourLight size={22} />
+                        <div className="ml-4">Squares</div>
                       </div>
                     </div>
                   )}

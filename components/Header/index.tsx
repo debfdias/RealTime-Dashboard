@@ -22,7 +22,7 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 dark:bg-gray-900 bg-gray-200">
+    <header className="fixed w-full top-0 z-50 dark:bg-gray-900 bg-gray-200">
       <div className="flex items-center justify-between h-[50px] px-16">
         <div className="flex items-center justify-center">
           <div className="text-2xl font-bold text-gray-700 dark:text-white">

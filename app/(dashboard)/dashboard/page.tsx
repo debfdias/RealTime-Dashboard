@@ -1,5 +1,6 @@
 "use client"
 
+import TableComponent from "@/components/Table"
 import { staticData } from "@/constants/data"
 import axios from "axios"
 import dynamic from "next/dynamic"
@@ -16,6 +17,8 @@ const BarChart = dynamic(() => import("@/components/Charts/BarChart"), {
 export default function Dashboardd() {
   const [lineChartData, setLineCharData] = useState<any>([])
   const [barChartData, setBarCharData] = useState<any>([])
+  const [recentTransaction, setRecentTransactions] = useState<any[]>([])
+  const [topProducts, setTopProducts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const SECONDS_MS = 5000 //5 seconds
 
@@ -46,6 +49,10 @@ export default function Dashboardd() {
   async function loadStatic() {
     setLineCharData(staticData.data.dashboardData.charts.salesOverTime.data)
     setBarCharData(staticData.data.dashboardData.charts.userEngagement.data)
+    setRecentTransactions(
+      staticData.data.dashboardData.tables.recentTransactions
+    )
+    setTopProducts(staticData.data.dashboardData.tables.topProducts)
   }
 
   useEffect(() => {
@@ -63,8 +70,25 @@ export default function Dashboardd() {
         <div className="w-1/2">
           <LineChart name="Sales in October" data={lineChartData} />
         </div>
-        <div className="w-2/5">
+        <div className="w-1/2">
           <BarChart name="User engagement" data={barChartData} />
+        </div>
+      </div>
+      <div className="flex gap-8 pt-8">
+        <div className="w-1/2">
+          <TableComponent
+            title="Recent transactions"
+            columns={["User", "Amount", "Date"]}
+            rows={recentTransaction}
+          />
+        </div>
+
+        <div className="w-1/2">
+          <TableComponent
+            title="Top producs"
+            columns={["Name", "Sales"]}
+            rows={topProducts}
+          />
         </div>
       </div>
     </div>

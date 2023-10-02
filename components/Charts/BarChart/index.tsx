@@ -74,7 +74,7 @@ export default function BarChart({ name, data }: LineChartProps) {
 
   return (
     <div className="bg-gray-100 dark:bg-gray-700 rounded-md border border-solid dark:border-gray-600 border-gray-400 p-8 sm:p-4 xl:col-span-8 col-span-12 text-gray-700">
-      <div className="text-xl font-bold p-4 text-gray-600 dark:text-gray-200 flex items-center">
+      <div className="text-md md:text-xl font-bold p-4 text-gray-600 dark:text-gray-200 flex items-center">
         <BsGraphUp />
         <div className="ml-4">{name}</div>
       </div>
