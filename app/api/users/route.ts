@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma"
 import { NextResponse } from "next/server"
 
-
+export const dynamic = "force-dynamic"
 export async function GET(req: Request, res: Response) {
   try {
     const users = await prisma.user.findMany({
@@ -10,10 +10,10 @@ export async function GET(req: Request, res: Response) {
       },
       select: {
         id: true,
-        name:true,
-        email:true,
-        createdAt: true
-      }
+        name: true,
+        email: true,
+        createdAt: true,
+      },
     })
 
     return NextResponse.json(users)
@@ -22,4 +22,3 @@ export async function GET(req: Request, res: Response) {
     return new NextResponse("Internal Error", { status: 500 })
   }
 }
-
