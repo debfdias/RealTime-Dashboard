@@ -12,7 +12,7 @@ export default function Users() {
     await axios
       .get("/api/users")
       .then((response) => {
-        console.log(response.data)
+        //console.log(response.data)
         setUsers(response.data)
       })
       .catch((err) => console.log(err))
