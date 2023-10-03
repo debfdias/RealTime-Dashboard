@@ -33,7 +33,7 @@ export default function Users() {
           <TableComponent
             title="Users"
             columns={["Name", "Email", "Created"]}
-            rows={users}
+            rows={[]}
           />
         </div>
       )}
