@@ -32,21 +32,6 @@ export default function Dashboardd() {
     Authorization: `Bearer ${token}`,
   }
 
-  const [users, setUsers] = useState([])
-
-  async function loadUsers() {
-    await axios
-      .get("/api/users")
-      .then((response) => {
-        console.log(response.data)
-        setUsers(response.data)
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setLoading(false)
-      })
-  }
-
   async function loadData() {
     await axios
       .get("https://dashboard-api-dusky.vercel.app/api/get", { headers })
@@ -62,7 +47,6 @@ export default function Dashboardd() {
   }
 
   async function loadStatic() {
-    loadUsers()
     setLineCharData(staticData.data.dashboardData.charts.salesOverTime.data)
     setBarCharData(staticData.data.dashboardData.charts.userEngagement.data)
     setRecentTransactions(
@@ -106,13 +90,6 @@ export default function Dashboardd() {
             rows={topProducts}
           />
         </div>
-      </div>
-      <div className="w-full pt-8">
-        <TableComponent
-          title="Users"
-          columns={["Name", "Email", "Created"]}
-          rows={users}
-        />
       </div>
     </div>
   )
