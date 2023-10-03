@@ -2,6 +2,7 @@
 
 import TableComponent from "@/components/Table"
 import { staticData } from "@/constants/data"
+import { useLayoutContext } from "@/contexts/LayoutProvider"
 import axios from "axios"
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
@@ -20,6 +21,9 @@ export default function Dashboardd() {
   const [recentTransaction, setRecentTransactions] = useState<any[]>([])
   const [topProducts, setTopProducts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+
+  const { layout } = useLayoutContext()
+
   const SECONDS_MS = 5000 //5 seconds
 
   const token =
@@ -66,16 +70,16 @@ export default function Dashboardd() {
 
   return (
     <div className="w-full">
-      <div className="flex gap-8">
-        <div className="w-1/2">
+      <div className={`${layout === "squares" ? "flex gap-8" : ""}`}>
+        <div className={`${layout === "squares" ? "w-1/2" : "w-full pb-8"}`}>
           <LineChart name="Sales in October" data={lineChartData} />
         </div>
-        <div className="w-1/2">
+        <div className={`${layout === "squares" ? "w-1/2" : "w-full pb-8"}`}>
           <BarChart name="User engagement" data={barChartData} />
         </div>
       </div>
-      <div className="flex gap-8 pt-8">
-        <div className="w-1/2">
+      <div className={`${layout === "squares" ? "flex gap-8 pt-8" : ""}`}>
+        <div className={`${layout === "squares" ? "w-1/2" : "w-full pb-8"}`}>
           <TableComponent
             title="Recent transactions"
             columns={["User", "Amount", "Date"]}
@@ -83,7 +87,7 @@ export default function Dashboardd() {
           />
         </div>
 
-        <div className="w-1/2">
+        <div className={`${layout === "squares" ? "w-1/2" : "w-full pb-8"}`}>
           <TableComponent
             title="Top producs"
             columns={["Name", "Sales"]}

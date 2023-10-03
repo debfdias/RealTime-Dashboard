@@ -1,5 +1,6 @@
 "use client"
 
+import { useLayoutContext } from "@/contexts/LayoutProvider"
 import { useSidebarContext } from "@/contexts/SidebarProvider"
 import appRoutes from "@/routes/routes"
 import Link from "next/link"
@@ -11,8 +12,8 @@ import { PiSquaresFourLight, PiStack } from "react-icons/pi"
 
 export default function Sidebar() {
   const { openSidebar, setOpenSidebar } = useSidebarContext()
+  const { layout, setLayout } = useLayoutContext()
   const [openDropdown, setOpenDropdown] = useState(false)
-  const [layout, setLayout] = useState<string>("")
 
   const pathname = usePathname()
 
@@ -91,19 +92,23 @@ export default function Sidebar() {
                   {openDropdown && route.path === "layout" && (
                     <div className="font-light cursor-pointer items-center justify-center text-gray-600 dark:text-gray-300">
                       <div
-                        onClick={() => setLayout("stacked")}
-                        className="flex items-center px-16 py-2 hover:bg-gray-300/70 dark:hover:bg-gray-700/20 hover:text-blue-500"
-                      >
-                        <PiStack size={20} />
-                        <div className="ml-4">Stacked</div>
-                      </div>
-
-                      <div
-                        onClick={() => setLayout("minimalist")}
-                        className="flex items-center px-16 mb-4 py-2 hover:bg-gray-300/70 dark:hover:bg-gray-700/20 hover:text-blue-500"
+                        onClick={() => setLayout("squares")}
+                        className={`flex items-center px-16 mb-4 py-2 hover:bg-gray-300/70 dark:hover:bg-gray-700/20 hover:text-blue-500 ${
+                          layout === "squares" && "text-blue-400"
+                        }`}
                       >
                         <PiSquaresFourLight size={22} />
                         <div className="ml-4">Squares</div>
+                      </div>
+
+                      <div
+                        onClick={() => setLayout("stacked")}
+                        className={`flex items-center px-16 py-2 hover:bg-gray-300/70 dark:hover:bg-gray-700/20 hover:text-blue-500 ${
+                          layout === "stacked" && "text-blue-400"
+                        }`}
+                      >
+                        <PiStack size={20} />
+                        <div className="ml-4">Stacked</div>
                       </div>
                     </div>
                   )}

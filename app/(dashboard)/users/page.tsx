@@ -12,7 +12,6 @@ export default function Users() {
     await axios
       .get("/api/users")
       .then((response) => {
-        //console.log(response.data)
         setUsers(response.data)
       })
       .catch((err) => console.log(err))
@@ -28,7 +27,7 @@ export default function Users() {
 
   return (
     <div>
-      {!loading && (
+      {!loading ? (
         <div className="w-full">
           <TableComponent
             title="Users"
@@ -36,6 +35,8 @@ export default function Users() {
             rows={users}
           />
         </div>
+      ) : (
+        <>Loading users...</>
       )}
     </div>
   )
