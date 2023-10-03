@@ -40,6 +40,9 @@ NEXT_PUBLIC_SUPABASE_URL='supabase_url"
 NEXT_PUBLIC_SUPABASE_ANON_KEY='xxx'
 NEXTAUTH_SECRET='xxx'
 
+```
+
+```bash
 # Generate DB
 $ yarn prisma generate
 
