@@ -1,3 +1,5 @@
+import { format } from "date-fns"
+
 const data = [
   {
     id: 5,
@@ -50,15 +52,33 @@ export default function TableComponent({ title, columns, rows }: TableProps) {
         <tbody>
           {rows.map((row: any) => (
             <>
-              <tr className="bg-white border-b dark:bg-gray-700 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  {row.user || row.name}
-                </th>
-                <td className="px-6 py-4">{row.amount || row.sales}</td>
-                {row.date && <td className="px-6 py-4">{row.date}</td>}
+              <tr
+                className="bg-white border-b dark:bg-gray-700 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600"
+                key={row.id}
+              >
+                {Object.entries(row).map((element: any, index: number) => {
+                  return (
+                    <>
+                      {index === 1 && (
+                        <th
+                          scope="row"
+                          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                          key={index}
+                        >
+                          {element[1]}
+                        </th>
+                      )}
+
+                      {index > 1 && (
+                        <td className="px-6 py-4" key={index}>
+                          {element[0] !== "createdAt"
+                            ? element[1]
+                            : format(new Date(element[1]), "yyyy-MM-dd")}
+                        </td>
+                      )}
+                    </>
+                  )
+                })}
               </tr>
             </>
           ))}

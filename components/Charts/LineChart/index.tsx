@@ -1,5 +1,4 @@
 import { ApexOptions } from "apexcharts"
-import { useEffect } from "react"
 import ReactApexChart from "react-apexcharts"
 import { BsGraphUp } from "react-icons/bs"
 
@@ -65,10 +64,6 @@ export default function LineChart({ name, data }: LineChartProps) {
       },
     ],
   }
-
-  useEffect(() => {
-    console.log(data)
-  })
 
   return (
     <div className="bg-gray-100 dark:bg-gray-700 rounded-md border border-solid dark:border-gray-600 border-gray-400 p-8 sm:p-4 xl:col-span-8 col-span-12 text-gray-700">
