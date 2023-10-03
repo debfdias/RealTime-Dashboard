@@ -3,6 +3,7 @@
 import { useSidebarContext } from "@/contexts/SidebarProvider"
 import { signOut } from "next-auth/react"
 import { useTheme } from "next-themes"
+import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { BsFillMoonStarsFill, BsSun } from "react-icons/bs"
 import { GiHamburgerMenu } from "react-icons/gi"
@@ -12,6 +13,8 @@ export default function Header() {
   const [mounted, setMounted] = useState(false)
   const { setOpenSidebar } = useSidebarContext()
   const { theme, setTheme } = useTheme()
+
+  const router = useRouter()
 
   useEffect(() => {
     setMounted(true)
@@ -71,7 +74,10 @@ export default function Header() {
           </div> */}
 
           <button
-            onClick={() => signOut()}
+            onClick={() => {
+              signOut()
+              router.push("/")
+            }}
             className="text-red-400 hover:text-red-500 flex"
           >
             <MdLogout size={24} />

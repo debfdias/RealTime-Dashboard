@@ -9,7 +9,9 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
     secret: process.env.NEXTAUTH_SECRET,
   })
 
-  if (!session && path === "/dashboard") {
+  const authRoutes = ["/dashboard", "/users", "/charts", "/tables", "/settings"]
+
+  if (!session && authRoutes.includes(path)) {
     return NextResponse.redirect(new URL("/", req.url))
   } else if (session && (path === "/register" || path === "/")) {
     return NextResponse.redirect(new URL("/dashboard", req.url))
