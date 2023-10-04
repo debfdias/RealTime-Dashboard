@@ -70,16 +70,32 @@ export default function Dashboardd() {
 
   return (
     <div className="w-full">
-      <div className={`${layout === "squares" ? "flex gap-8" : ""}`}>
-        <div className={`${layout === "squares" ? "w-1/2" : "w-full pb-8"}`}>
+      <div className={`${layout === "squares" ? "md:flex sm:gap-8 grid" : ""}`}>
+        <div
+          className={`${
+            layout === "squares" ? "md:w-1/2 w-[400px]" : "w-full pb-8"
+          }`}
+        >
           <LineChart name="Sales in October" data={lineChartData} />
         </div>
-        <div className={`${layout === "squares" ? "w-1/2" : "w-full pb-8"}`}>
+        <div
+          className={`${
+            layout === "squares" ? "md:w-1/2 w-[400px]" : "w-full pb-8"
+          }`}
+        >
           <BarChart name="User engagement" data={barChartData} />
         </div>
       </div>
-      <div className={`${layout === "squares" ? "flex gap-8 pt-8" : ""}`}>
-        <div className={`${layout === "squares" ? "w-1/2" : "w-full pb-8"}`}>
+      <div
+        className={`${
+          layout === "squares" ? "md:flex sm:gap-8 grid sm:pt-8" : ""
+        }`}
+      >
+        <div
+          className={`${
+            layout === "squares" ? "md:w-1/2 w-full" : "w-full pb-8"
+          }`}
+        >
           <TableComponent
             title="Recent transactions"
             columns={["User", "Amount", "Date"]}
@@ -87,7 +103,11 @@ export default function Dashboardd() {
           />
         </div>
 
-        <div className={`${layout === "squares" ? "w-1/2" : "w-full pb-8"}`}>
+        <div
+          className={`${
+            layout === "squares" ? "md:w-1/2 w-full" : "w-full pb-8"
+          }`}
+        >
           <TableComponent
             title="Top producs"
             columns={["Name", "Sales"]}
